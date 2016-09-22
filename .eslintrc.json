@@ -1,0 +1,12 @@
+{
+    "root": true,
+    "env": {
+      "browser": true,
+      "jasmine": true
+    },
+    "extends": [
+      "xo-react/space",
+      "xo-space/esnext"
+    ]
+}
+

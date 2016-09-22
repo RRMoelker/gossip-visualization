@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const eslint = require('gulp-eslint');
 const HubRegistry = require('gulp-hub');
 const browserSync = require('browser-sync');
 
@@ -17,6 +18,13 @@ gulp.task('serve', gulp.series('webpack:watch', 'watch', 'browsersync'));
 gulp.task('serve:dist', gulp.series('default', 'browsersync:dist'));
 gulp.task('default', gulp.series('clean', 'build'));
 gulp.task('watch', watch);
+
+gulp.task('lint', () => {
+  return gulp.src(['**/*.js', '!node_modules/**', '!coverage/**', '!.tmp/**'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
 
 function reloadBrowserSync(cb) {
   browserSync.reload();
