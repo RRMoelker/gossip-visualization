@@ -2,6 +2,7 @@
 
 Work in progress!
 
+[![Build Status](https://travis-ci.org/RRMoelker/gossip-visualization.svg?branch=master)](https://travis-ci.org/RRMoelker/gossip-visualization)
 
 # Install
 ```
