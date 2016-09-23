@@ -14,5 +14,12 @@ npm install
 npm run serve
 ```
 
+# Test
+
+Tape tests
+```
+./node_modules/.bin/tape -r babel-register ./src/*/*.tape.js | ./node_modules/.bin/faucet
+```
+
 # Credits
 Started from generator output: http://fountainjs.io/

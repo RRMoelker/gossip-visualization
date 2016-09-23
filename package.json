@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "keymirror": "0.1.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "4.4.5",
@@ -25,6 +26,7 @@
     "eslint-plugin-babel": "^3.1.0",
     "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
+    "faucet": "0.0.1",
     "gulp": "gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
     "gulp-eslint": "3.0.1",
     "gulp-filter": "^4.0.0",
@@ -51,6 +53,7 @@
     "redux-mock-store": "1.2.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
+    "tape": "4.6.0",
     "webpack": "2.1.0-beta.20",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
