@@ -1,6 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 
+import TimeDisplay from './TimeDisplay';
 import NodesList from './nodesList';
 import DevTools from './monitor';
 
@@ -13,6 +14,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div>
+          <TimeDisplay/>
           <NodesList/>
           <DevTools/>
         </div>
