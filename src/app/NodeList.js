@@ -6,7 +6,7 @@ class NodeList extends React.Component {
     return (
       <ul>
         {this.props.nodes.map(node =>
-          <li key={node}>hello item {node}</li>
+          <li key={node}>Node {node}</li>
         )}
       </ul>
     );

@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 
 import './index.scss';
 
-import store from './data/store';
-import {nodeAddAC} from './data/nodes';
-
+import storeCreator from './data/store';
+import parser from './data/parser';
 import App from './app/App';
 
-store.dispatch(nodeAddAC(2, 5));
+const logFile = '/log/simple.log';
+const store = storeCreator();
+
+fetch(logFile)
+  .then(response => response.text())
+  .then(text => parser(store, text));
 
 ReactDOM.render(
   <App store={store}/>,

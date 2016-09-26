@@ -21,5 +21,4 @@ const mapStateToProps = state => {
   };
 };
 
-
 export default connect(mapStateToProps)(TimeDisplay);

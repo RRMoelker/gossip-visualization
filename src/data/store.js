@@ -1,4 +1,4 @@
-import redux from 'redux';
+import {createStore} from 'redux';
 import {nodeReducer} from './nodes';
 import TimeMonitor from '../app/TimeMonitor';
 
@@ -13,6 +13,4 @@ const rootReducer = (state = initialState, action) => {
   };
 };
 
-const store = redux.createStore(rootReducer, initialState, TimeMonitor.instrument());
-
-export default store;
+export default () => createStore(rootReducer, initialState, TimeMonitor.instrument());
