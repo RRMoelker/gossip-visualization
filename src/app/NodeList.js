@@ -6,7 +6,7 @@ class NodeList extends React.Component {
     return (
       <ul>
         {this.props.nodes.map(node =>
-          <li key={node}>Node {node}</li>
+          <li key={node.id}>Node {node.id}: {node.members}</li>
         )}
       </ul>
     );
@@ -23,15 +23,5 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return {
-//     // onTodoClick: (id) => {
-//     //   dispatch(toggleTodo(id))
-//     // }
-  };
-};
 
-export default connect(
-  mapStateToProps,
-  {mapDispatchToProps}
-)(NodeList);
+export default connect(mapStateToProps)(NodeList);

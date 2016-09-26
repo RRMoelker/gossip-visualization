@@ -1,28 +1,40 @@
 /*
 Function that parses a text to a stream of actions that are inserted into the Redux store.
 */
-import {nodeAddAC} from './nodes';
+import {nodeAddAC, nodeMemberAddAC} from './nodes';
 
-const parseLine = (line, store) => {
-  const re = /(\d).0.0.0:0 \[(\d+)\] Node start$/i;
-  const result = re.exec(line);
-  if (result) {
-    const node = parseInt(result[1], 10);
-    const t = parseInt(result[2], 10);
-    console.log('line: ', line.trim());
-    console.log(result);
-    console.log(node, t);
-    store.dispatch(nodeAddAC(t, node));
-  }
+const nodeAdd = (store, result) => {
+  const t = parseInt(result[2], 10);
+  const node = parseInt(result[1], 10);
+  store.dispatch(nodeAddAC(t, node));
+}
+
+const nodeMemberAdd = (store, result) => {
+  const t = parseInt(result[2], 10);
+  const node = parseInt(result[1], 10);
+  const member = parseInt(result[3], 10);
+  store.dispatch(nodeMemberAddAC(t, node, member));
+}
+
+const regexFunctions = [
+  [
+  /(\d).0.0.0:0 \[(\d+)\] Node start$/, nodeAdd
+  ],
+  [
+  /(\d).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
+  ]
+];
+
+const parseLine = (store, line) => {
+  regexFunctions.some(regexFunction => {
+    const [re, func] = regexFunction;
+    const result = re.exec(line);
+    if (result) {
+      func(store, result);
+      return true;
+    }
+  });
 };
-
-// ##Node join to other node
-// ```
-// 1.0.0.0:0 [1] Node 2.0.0.0:0 joined at time 1
-// ```
-
-// Two way if
-// 2.0.0.0:0 [7] Node 1.0.0.0:0 joined at time 7
 
 // ## Crash stop
 // 8.0.0.0:0 [100] Node failed at time = 100
@@ -44,6 +56,6 @@ const parseLine = (line, store) => {
 
 export default function (store, text) {
   console.log('parsing start');
-  text.split("\n").map(line => parseLine(line, store));
+  text.split("\n").map(line => parseLine(store, line.trim()));
   console.log('parsing done');
 }

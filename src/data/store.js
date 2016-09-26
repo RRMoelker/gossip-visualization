@@ -13,4 +13,4 @@ const rootReducer = (state = initialState, action) => {
   };
 };
 
-export default () => createStore(rootReducer, initialState, TimeMonitor.instrument());
+export default (state = initialState) => createStore(rootReducer, state, TimeMonitor.instrument());
