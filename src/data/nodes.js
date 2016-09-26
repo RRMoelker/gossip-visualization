@@ -14,7 +14,7 @@ export function nodeAddAC(t, id) {
   };
 }
 
-const initialState = [1, 2, 3];
+const initialState = [1, 2, 3, 4];
 export const nodeReducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTION_TYPES.NODE_ADD:
