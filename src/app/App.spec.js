@@ -3,7 +3,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import TestUtils from 'react/lib/ReactTestUtils';
-import App from './app';
+import App from './App';
 
 describe('app component', () => {
   it('should render node list', () => {

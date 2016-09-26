@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 class TimeDisplay extends React.Component {
-
   render() {
     return (
       <span>

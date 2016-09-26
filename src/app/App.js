@@ -2,8 +2,8 @@ import React from 'react';
 import {Provider} from 'react-redux';
 
 import TimeDisplay from './TimeDisplay';
-import NodesList from './nodesList';
-import DevTools from './monitor';
+import NodeList from './NodeList';
+import TimeMonitor from './TimeMonitor';
 
 class App extends React.Component {
   static propTypes = {
@@ -15,8 +15,8 @@ class App extends React.Component {
       <Provider store={store}>
         <div>
           <TimeDisplay/>
-          <NodesList/>
-          <DevTools/>
+          <NodeList/>
+          <TimeMonitor/>
         </div>
       </Provider>
     );

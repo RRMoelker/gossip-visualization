@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-class NodesList extends React.Component {
-
+class NodeList extends React.Component {
   render() {
     return (
       <ul>
@@ -14,7 +13,7 @@ class NodesList extends React.Component {
   }
 }
 
-NodesList.propTypes = {
+NodeList.propTypes = {
   nodes: React.PropTypes.array
 };
 
@@ -35,4 +34,4 @@ const mapDispatchToProps = () => {
 export default connect(
   mapStateToProps,
   {mapDispatchToProps}
-)(NodesList);
+)(NodeList);

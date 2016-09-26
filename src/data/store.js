@@ -1,6 +1,6 @@
 import redux from 'redux';
 import {nodeReducer} from './nodes';
-import DevTool from '../app/monitor';
+import TimeMonitor from '../app/TimeMonitor';
 
 // modified variant of combinedReducer: http://redux.js.org/docs/basics/Reducers.html
 const initialState = {
@@ -13,6 +13,6 @@ const rootReducer = (state = initialState, action) => {
   };
 };
 
-const store = redux.createStore(rootReducer, initialState, DevTool.instrument());
+const store = redux.createStore(rootReducer, initialState, TimeMonitor.instrument());
 
 export default store;
