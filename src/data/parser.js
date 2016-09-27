@@ -1,19 +1,19 @@
 /*
 Function that parses a text to a stream of actions that are inserted into the Redux store.
 */
-import {nodeAddAC, nodeMemberAddAC} from './nodes';
+import {actionCreators} from './nodes';
 
-const nodeAdd = (store, result) => {
+const nodeAdd = result => {
   const t = parseInt(result[2], 10);
   const node = parseInt(result[1], 10);
-  store.dispatch(nodeAddAC(t, node));
+  return actionCreators.nodeAdd(t, node);
 }
 
-const nodeMemberAdd = (store, result) => {
+const nodeMemberAdd = result => {
   const t = parseInt(result[2], 10);
   const node = parseInt(result[1], 10);
   const member = parseInt(result[3], 10);
-  store.dispatch(nodeMemberAddAC(t, node, member));
+  return actionCreators.nodeMemberAdd(t, node, member);
 }
 
 const regexFunctions = [
@@ -25,12 +25,12 @@ const regexFunctions = [
   ]
 ];
 
-const parseLine = (store, line) => {
+const parseLine = (actions, line) => {
   regexFunctions.some(regexFunction => {
     const [re, func] = regexFunction;
     const result = re.exec(line);
     if (result) {
-      func(store, result);
+      actions.push(func(result));
       return true;
     }
   });
@@ -54,8 +54,8 @@ const parseLine = (store, line) => {
 // 1.0.0.0:0 [5] Node 6.0.0.0:0 gossiping
 // ```
 
-export default function (store, text) {
+export default function (actions, text) {
   console.log('parsing start');
-  text.split("\n").map(line => parseLine(store, line.trim()));
+  text.split("\n").map(line => parseLine(actions, line.trim()));
   console.log('parsing done');
 }

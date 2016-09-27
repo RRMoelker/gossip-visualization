@@ -1,20 +1,20 @@
 import test from 'tape';
-import {ACTION_TYPES, nodeAddAC, nodeMemberAddAC, nodeReducer} from './nodes';
+import {_ACTION_TYPES, actionCreators, nodeReducer} from './nodes';
 
 const t = 66;
 
 test('NODE_ADD creator should create action', assert => {
   const expected = {
-    type: ACTION_TYPES.NODE_ADD,
+    type: _ACTION_TYPES.NODE_ADD,
     t: 2,
     id: 5
   };
-  assert.deepEqual(nodeAddAC(2, 5), expected);
+  assert.deepEqual(actionCreators.nodeAdd(2, 5), expected);
   assert.end();
 });
 
 test('should add node', assert => {
-  const result = nodeReducer([], nodeAddAC(t, 5));
+  const result = nodeReducer([], actionCreators.nodeAdd(t, 5));
 
   const expected = [{ id: 5, members: []}];
   assert.deepEqual(result, expected);
@@ -24,7 +24,7 @@ test('should add node', assert => {
 test('should add multiple nodes', assert => {
   const start = [{ id: 5, members: [] }];
 
-  const result = nodeReducer(start, nodeAddAC(t, 3));
+  const result = nodeReducer(start, actionCreators.nodeAdd(t, 3));
 
   const expected = [{ id: 5, members: []}, {id: 3, members: []}];
   assert.deepEqual(result, expected);
@@ -37,7 +37,7 @@ test('member should join correct node', assert => {
                   { id: 9, members: [] }
                 ];
 
-  const result = nodeReducer(start, nodeMemberAddAC(t, 9, 8));
+  const result = nodeReducer(start, actionCreators.nodeMemberAdd(t, 9, 8));
 
   const expected = [
                   { id: 5, members: [] },
