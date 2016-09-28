@@ -16,6 +16,13 @@ const nodeMemberAdd = result => {
   return actionCreators.nodeMemberAdd(t, node, member);
 }
 
+const nodeMemberRemove = result => {
+  const t = parseInt(result[2], 10);
+  const node = parseInt(result[1], 10);
+  const member = parseInt(result[3], 10);
+  return actionCreators.nodeMemberRemove(t, node, member);
+}
+
 const nodeMemberFail = result => {
   const t = parseInt(result[2], 10);
   const node = parseInt(result[1], 10);
@@ -28,6 +35,9 @@ const regexFunctions = [
   ],
   [
   /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
+  ],
+  [
+  /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 removed at time (\d+)$/, nodeMemberRemove
   ],
   [
   /(\d+).0.0.0:0 \[(\d+)\] Node failed at time = \d+$/, nodeMemberFail
@@ -44,11 +54,6 @@ const parseLine = (actions, line) => {
     }
   });
 };
-
-// ## Node removal from list
-// ```
-// 10.0.0.0:0 [133] Node 5.0.0.0:0 removed at time 133
-// ```
 
 // ## Detected failure
 // ```

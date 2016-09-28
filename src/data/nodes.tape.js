@@ -62,3 +62,19 @@ test('node should fail', assert => {
   assert.deepEqual(result, expected);
   assert.end();
 });
+
+test('member should be removed from node', assert => {
+  const start = [
+                  { id: 5, members: [], fail:true },
+                  { id: 9, members: [6, 5] }
+                ];
+
+  const result = nodeReducer(start, actionCreators.nodeMemberRemove(t, 9, 5));
+
+  const expected = [
+                  { id: 5, members: [], fail: true  },
+                  { id: 9, members: [6] }
+                ];
+  assert.deepEqual(result, expected);
+  assert.end();
+});

@@ -37,3 +37,16 @@ test('should read node fails', assert => {
   assert.deepEqual(actions, expected);
   assert.end();
 });
+
+
+test('should read member removals', assert => {
+  const actions = [];
+  const expected = [actionCreators.nodeMemberRemove(133, 10, 5)];
+
+  const line = "10.0.0.0:0 [133] Node 5.0.0.0:0 removed at time 133";
+
+  parser(actions, line);
+
+  assert.deepEqual(actions, expected);
+  assert.end();
+});
