@@ -46,3 +46,19 @@ test('member should join correct node', assert => {
   assert.deepEqual(result, expected);
   assert.end();
 });
+
+test('node should fail', assert => {
+  const start = [
+                  { id: 5, members: [] },
+                  { id: 9, members: [] }
+                ];
+
+  const result = nodeReducer(start, actionCreators.nodeFail(t, 9));
+
+  const expected = [
+                  { id: 5, members: [] },
+                  { id: 9, members: [], fail: true }
+                ];
+  assert.deepEqual(result, expected);
+  assert.end();
+});

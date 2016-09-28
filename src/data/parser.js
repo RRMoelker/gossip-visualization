@@ -16,12 +16,21 @@ const nodeMemberAdd = result => {
   return actionCreators.nodeMemberAdd(t, node, member);
 }
 
+const nodeMemberFail = result => {
+  const t = parseInt(result[2], 10);
+  const node = parseInt(result[1], 10);
+  return actionCreators.nodeFail(t, node);
+}
+
 const regexFunctions = [
   [
   /(\d+).0.0.0:0 \[(\d+)\] Node start$/, nodeAdd
   ],
   [
   /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
+  ],
+  [
+  /(\d+).0.0.0:0 \[(\d+)\] Node failed at time = \d+$/, nodeMemberFail
   ]
 ];
 
@@ -35,9 +44,6 @@ const parseLine = (actions, line) => {
     }
   });
 };
-
-// ## Crash stop
-// 8.0.0.0:0 [100] Node failed at time = 100
 
 // ## Node removal from list
 // ```

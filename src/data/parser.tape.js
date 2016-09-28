@@ -25,3 +25,15 @@ test('should read node joins', assert => {
   assert.deepEqual(actions, expected);
   assert.end();
 });
+
+test('should read node fails', assert => {
+  const actions = [];
+  const expected = [actionCreators.nodeFail(100, 8)];
+
+  const line = "8.0.0.0:0 [100] Node failed at time = 100";
+
+  parser(actions, line);
+
+  assert.deepEqual(actions, expected);
+  assert.end();
+});
