@@ -18,10 +18,10 @@ const nodeMemberAdd = result => {
 
 const regexFunctions = [
   [
-  /(\d).0.0.0:0 \[(\d+)\] Node start$/, nodeAdd
+  /(\d+).0.0.0:0 \[(\d+)\] Node start$/, nodeAdd
   ],
   [
-  /(\d).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
+  /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
   ]
 ];
 
@@ -58,4 +58,5 @@ export default function (actions, text) {
   console.log('parsing start');
   text.split("\n").map(line => parseLine(actions, line.trim()));
   console.log('parsing done');
+  return actions;
 }

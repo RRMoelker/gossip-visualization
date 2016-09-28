@@ -15,7 +15,7 @@ store.subscribe(() => console.log(store.getState()));
 fetch(logFile)
   .then(response => response.text())
   .then(text => parser([], text))
-  .then(actions => actions.forEach(action => store.dispatch(action));
+  .then(actions => actions.forEach(action => store.dispatch(action)));
 
 ReactDOM.render(
   <App store={store}/>,
