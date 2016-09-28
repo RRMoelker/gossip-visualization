@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Graph from './Graph';
 
 class DetailView extends React.Component {
   render() {
     return (
       <div className="graph-view box">
-       Graph view
+       <Graph/>
       </div>
     );
   }
