@@ -1,32 +1,25 @@
 const gulp = require('gulp');
 
-const eslint = require('gulp-eslint');
-const HubRegistry = require('gulp-hub');
 const browserSync = require('browser-sync');
 
 const conf = require('./conf/gulp.conf');
 
-// Load some files into the registry
-const hub = new HubRegistry([conf.path.tasks('*.js')]);
-
-// Tell gulp to use the tasks just loaded
-gulp.registry(hub);
+require('require-dir')('./gulp_tasks');
 
 gulp.task('build', gulp.series(gulp.parallel('other', 'webpack:dist')));
+gulp.task('watch', watch);
 gulp.task('test:single', gulp.series('karma:single'));
 gulp.task('test:watch', gulp.series('karma:watch'));
-gulp.task('serve', gulp.series('webpack:watch', 'watch', 'browsersync'));
-gulp.task('serve:dist', gulp.series('default', 'browsersync:dist'));
-gulp.task('default', gulp.series('clean', 'build'));
-gulp.task('watch', watch);
+gulp.task('serve', gulp.series('webpack:watch', 'browsersync'));
+gulp.task('serve:dist', gulp.series('clean', 'build', 'browsersync:dist'));
+gulp.task('default', gulp.series('build'));
 
-
-function reloadBrowserSync(cb) {
+const reloadBrowserSync = (cb) => {
   browserSync.reload();
   cb();
 }
 
-function watch(done) {
+const watch = done => {
   gulp.watch(conf.path.tmp('index.html'), reloadBrowserSync);
   done();
 }
