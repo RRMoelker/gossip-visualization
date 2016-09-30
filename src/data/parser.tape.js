@@ -1,6 +1,5 @@
 import test from 'tape';
 import parser from './parser';
-import storeCreator from './store';
 import {actionCreators} from './nodes';
 
 test('should read node starts', assert => {
@@ -37,7 +36,6 @@ test('should read node fails', assert => {
   assert.deepEqual(actions, expected);
   assert.end();
 });
-
 
 test('should read member removals', assert => {
   const actions = [];

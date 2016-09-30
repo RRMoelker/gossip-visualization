@@ -6,14 +6,11 @@ const filter = require('gulp-filter');
 
 const conf = require('../conf/gulp.conf');
 
-gulp.task('clean', clean);
-gulp.task('other', other);
-
-function clean() {
+const clean = () => {
   return del([conf.paths.dist, conf.paths.tmp]);
-}
+};
 
-function other() {
+const other = () => {
   const fileFilter = filter(file => file.stat.isFile());
 
   return gulp.src([
@@ -22,4 +19,7 @@ function other() {
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(conf.paths.dist));
-}
+};
+
+gulp.task('clean', clean);
+gulp.task('other', other);

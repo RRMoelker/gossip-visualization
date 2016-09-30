@@ -7,8 +7,10 @@ class NodeList extends React.Component {
       <ul>
         {this.props.nodes.map(node =>
           <li key={node.id}>Node {node.id}, members: {node.members.join(',')}
-          {(()=> {
-              if(node.fail) return " failed";
+          {(() => {
+            if (node.fail) {
+              return " failed";
+            }
           })()}
           </li>
         )}
@@ -26,6 +28,5 @@ const mapStateToProps = state => {
     nodes: state.nodes
   };
 };
-
 
 export default connect(mapStateToProps)(NodeList);

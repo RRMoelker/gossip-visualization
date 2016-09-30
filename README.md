@@ -11,14 +11,13 @@ npm install
 
 # Run
 ```
-npm run serve
+npm start
 ```
 
 # Test
 
-Tape tests
 ```
-./node_modules/.bin/tape -r babel-register ./src/*/*.tape.js | ./node_modules/.bin/faucet
+npm run test 
 ```
 
 # Credits
