@@ -6,19 +6,7 @@ const webpackConf = require('../conf/webpack.conf');
 const webpackDistConf = require('../conf/webpack-dist.conf');
 const gulpConf = require('../conf/gulp.conf');
 
-gulp.task('webpack:dev', done => {
-  webpackWrapper(false, webpackConf, done);
-});
-
-gulp.task('webpack:watch', done => {
-  webpackWrapper(true, webpackConf, done);
-});
-
-gulp.task('webpack:dist', done => {
-  webpackWrapper(false, webpackDistConf, done);
-});
-
-function webpackWrapper(watch, conf, done) {
+const webpackWrapper = (watch, conf, done) => {
   const webpackBundler = webpack(conf);
 
   const webpackChangeHandler = (err, stats) => {
@@ -42,4 +30,16 @@ function webpackWrapper(watch, conf, done) {
   } else {
     webpackBundler.run(webpackChangeHandler);
   }
-}
+};
+
+gulp.task('webpack:dev', done => {
+  webpackWrapper(false, webpackConf, done);
+});
+
+gulp.task('webpack:watch', done => {
+  webpackWrapper(true, webpackConf, done);
+});
+
+gulp.task('webpack:dist', done => {
+  webpackWrapper(false, webpackDistConf, done);
+});

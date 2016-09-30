@@ -7,15 +7,15 @@ const browserSyncDistConf = require('../conf/browsersync-dist.conf');
 
 browserSync.use(spa());
 
-gulp.task('browsersync', browserSyncServe);
-gulp.task('browsersync:dist', browserSyncDist);
-
-function browserSyncServe(done) {
+const browserSyncServe = done => {
   browserSync.init(browserSyncConf());
   done();
-}
+};
 
-function browserSyncDist(done) {
+const browserSyncDist = done => {
   browserSync.init(browserSyncDistConf());
   done();
-}
+};
+
+gulp.task('browsersync', browserSyncServe);
+gulp.task('browsersync:dist', browserSyncDist);

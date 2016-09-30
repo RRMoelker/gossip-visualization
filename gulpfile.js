@@ -8,7 +8,7 @@ require('require-dir')('./gulp_tasks');
 
 gulp.task('build', gulp.series(gulp.parallel('other', 'webpack:dist')));
 gulp.task('watch', watch);
-gulp.task('test:single', gulp.series('karma:single'));
+gulp.task('test:single', gulp.series('eslint:config', 'karma:single'));
 gulp.task('test:watch', gulp.series('karma:watch'));
 gulp.task('serve', gulp.series('webpack:watch', 'browsersync'));
 gulp.task('serve:dist', gulp.series('clean', 'build', 'browsersync:dist'));
