@@ -1,16 +1,15 @@
 import keyMirror from 'keymirror';
 
 const immutableDelete = (arr, index) => {
-   return arr.slice(0,index).concat(arr.slice(index+1))
-}
-
+  return arr.slice(0, index).concat(arr.slice(index + 1));
+};
 
 export const _ACTION_TYPES = keyMirror({
   NODE_ADD: null,
   NODE_MEMBER_ADD: null,
   NODE_MEMBER_REMOVE: null,
   NODE_REMOVE: null,
-  NODE_FAIL: null,
+  NODE_FAIL: null
 });
 
 /* Action creators */
@@ -37,7 +36,7 @@ export const actionCreators = {
     t,
     id
   })
-}
+};
 
 const initialState = [];
 export const nodeReducer = (state = initialState, action) => {
@@ -51,29 +50,29 @@ export const nodeReducer = (state = initialState, action) => {
       return state.map(node => {
         if (node.id === action.id) {
           return Object.assign({}, node, {
-            members: [...node.members, action.member] 
-          })
+            members: [...node.members, action.member]
+          });
         }
         return node;
-      })
+      });
     case _ACTION_TYPES.NODE_MEMBER_REMOVE:
       return state.map(node => {
         if (node.id === action.id) {
           return Object.assign({}, node, {
             members: immutableDelete(node.members, node.members.indexOf(action.member))
-          })
+          });
         }
         return node;
-      })
+      });
     case _ACTION_TYPES.NODE_FAIL:
       return state.map(node => {
         if (node.id === action.id) {
           return Object.assign({}, node, {
             fail: true
-          })
+          });
         }
         return node;
-      })
+      });
     default:
       return state;
   }

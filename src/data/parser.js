@@ -7,40 +7,40 @@ const nodeAdd = result => {
   const t = parseInt(result[2], 10);
   const node = parseInt(result[1], 10);
   return actionCreators.nodeAdd(t, node);
-}
+};
 
 const nodeMemberAdd = result => {
   const t = parseInt(result[2], 10);
   const node = parseInt(result[1], 10);
   const member = parseInt(result[3], 10);
   return actionCreators.nodeMemberAdd(t, node, member);
-}
+};
 
 const nodeMemberRemove = result => {
   const t = parseInt(result[2], 10);
   const node = parseInt(result[1], 10);
   const member = parseInt(result[3], 10);
   return actionCreators.nodeMemberRemove(t, node, member);
-}
+};
 
 const nodeMemberFail = result => {
   const t = parseInt(result[2], 10);
   const node = parseInt(result[1], 10);
   return actionCreators.nodeFail(t, node);
-}
+};
 
 const regexFunctions = [
   [
-  /(\d+).0.0.0:0 \[(\d+)\] Node start$/, nodeAdd
+    /(\d+).0.0.0:0 \[(\d+)\] Node start$/, nodeAdd
   ],
   [
-  /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
+    /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
   ],
   [
-  /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 removed at time (\d+)$/, nodeMemberRemove
+    /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 removed at time (\d+)$/, nodeMemberRemove
   ],
   [
-  /(\d+).0.0.0:0 \[(\d+)\] Node failed at time = \d+$/, nodeMemberFail
+    /(\d+).0.0.0:0 \[(\d+)\] Node failed at time = \d+$/, nodeMemberFail
   ]
 ];
 
@@ -52,7 +52,9 @@ const parseLine = (actions, line) => {
       actions.push(func(result));
       return true;
     }
+    return false;
   });
+  return actions;
 };
 
 // ## Detected failure
