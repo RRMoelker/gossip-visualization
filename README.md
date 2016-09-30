@@ -16,6 +16,10 @@ npm run serve
 
 # Test
 
+```
+npm run test:auto 
+```
+
 Tape tests
 ```
 ./node_modules/.bin/tape -r babel-register ./src/*/*.tape.js | ./node_modules/.bin/faucet
