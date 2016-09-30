@@ -1,47 +1,30 @@
-const conf = require('./gulp.conf');
+var webpackConfig = require('./webpack-test.conf.js');
+webpackConfig.entry = {};
 
-module.exports = function (config) {
-  const configuration = {
+module.exports = function(config) {
+  config.set({
     basePath: '../',
-    singleRun: true,
-    autoWatch: false,
-    logLevel: 'INFO',
-    junitReporter: {
-      outputDir: 'test-reports'
-    },
-    browsers: [
-      'PhantomJS'
-    ],
-    frameworks: [
-      'jasmine'
-    ],
+    browsers: ['PhantomJS'],
+    frameworks: ['jasmine'],
+
+    reporters: ['progress'],
+    logLevel: config.LOG_INFO,
+
+    autoWatchBatchDelay: 300,
+
     files: [
-      'node_modules/es6-shim/es6-shim.js',
-      conf.path.src('index.spec.js')
+      {pattern: '**/*.karma.js', watched: false}
     ],
+
     preprocessors: {
-      [conf.path.src('index.spec.js')]: [
-        'webpack'
-      ]
+      './src/index.js': ['webpack'],      
+      './**/*.karma.js': ['webpack']
     },
-    reporters: ['progress', 'coverage'],
-    coverageReporter: {
-      type: 'html',
-      dir: 'coverage/'
-    },
-    webpack: require('./webpack-test.conf'),
+
+    webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
-    },
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-junit-reporter'),
-      require('karma-coverage'),
-      require('karma-phantomjs-launcher'),
-      require('karma-phantomjs-shim'),
-      require('karma-webpack')
-    ]
-  };
+    }
 
-  config.set(configuration);
-};
+  });
+}

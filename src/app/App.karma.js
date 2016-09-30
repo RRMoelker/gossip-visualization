@@ -4,6 +4,12 @@ import configureMockStore from 'redux-mock-store';
 import TestUtils from 'react/lib/ReactTestUtils';
 import App from './App';
 
+App.__Rewire__('TimeMonitor', React.createClass({
+  render: () => {
+    return <div></div>;
+  }
+}));
+
 describe('app component', () => {
   it('should render node list', () => {
     const mockStore = configureMockStore();

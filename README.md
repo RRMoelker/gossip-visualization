@@ -11,13 +11,13 @@ npm install
 
 # Run
 ```
-npm run serve
+npm start
 ```
 
 # Test
 
 ```
-npm run test:auto 
+npm run test:watch 
 ```
 
 Tape tests

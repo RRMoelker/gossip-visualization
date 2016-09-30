@@ -19,12 +19,6 @@ module.exports = {
 
     loaders: [
       {
-        test: /.json$/,
-        loaders: [
-          'json'
-        ]
-      },
-      {
         test: /\.(css|scss)$/,
         loaders: ExtractTextPlugin.extract({
           fallbackLoader: 'style',

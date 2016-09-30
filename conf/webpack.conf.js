@@ -9,12 +9,6 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /.json$/,
-        loaders: [
-          'json'
-        ]
-      },
-      {
         test: /\.(css|scss)$/,
         loaders: [
           'style',
