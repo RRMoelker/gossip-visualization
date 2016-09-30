@@ -36,6 +36,7 @@
     "gulp-eslint": "3.0.1",
     "gulp-filter": "^4.0.0",
     "gulp-sass": "^2.1.1",
+    "gulp-shell": "0.5.2",
     "gulp-util": "^3.0.7",
     "html-webpack-plugin": "^2.9.0",
     "jasmine": "^2.4.1",
@@ -67,7 +68,6 @@
     "build": "gulp",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
-    "test": "gulp test:single",
-    "test:watch": "gulp test:watch"
+    "test": "gulp test"
   }
 }

@@ -3,6 +3,14 @@ const gulp = require('gulp');
 const karma = require('karma');
 const eslint = require('gulp-eslint');
 
+const shell = require('gulp-shell');
+
+gulp.task('exec-tape', shell.task([
+  'tape -r babel-register ./src/*/*.tape.js | faucet'
+]));
+
+gulp.task('tape', gulp.series('exec-tape'));
+
 gulp.task('eslint:src', () => {
   return gulp.src(['src/**/*.js'])
     .pipe(eslint({
