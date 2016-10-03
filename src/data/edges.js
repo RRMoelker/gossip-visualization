@@ -1,8 +1,7 @@
 import {immutableDelete} from './util';
 import {_ACTION_TYPES} from './nodes';
 
-const initialState = [{from: 1, to: 2}];
-export const edgeReducer = (state = initialState, action) => {
+export const edgeReducer = (state = [], action) => {
   switch (action.type) {
     case _ACTION_TYPES.NODE_MEMBER_ADD:
       return [...state, {
