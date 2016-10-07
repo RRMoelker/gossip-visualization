@@ -79,9 +79,13 @@ function start() {
 
   simulation.force("link")
     .links(links);
+
+  simulation.alpha(1);
+  simulation.restart();
 }
 
 function tick() {
+  console.count('tick');
   svg.selectAll(".node").attr("cx", function(d) {
     // console.count(d.x);
     return d.x;
