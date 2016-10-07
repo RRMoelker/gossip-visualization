@@ -1,65 +1,97 @@
 import * as d3 from "d3"; //see https://github.com/d3/d3/blob/master/README.md#installing
 
-export default class D3Graph {
-  _drawPoints(el, data) {
-    this.lines
-      .selectAll("line")
-      .data(data.links)
-      .enter()
-      .append("line")
-      .attr("stroke", "black")
+var width = 960,
+    height = 500;
 
-    this.nodes
-      .selectAll("circle")
-      .data(data.nodes)
-      .enter().append("circle")
-      .attr("r", '10');
-  };
+var color = d3.scaleOrdinal(d3.schemeCategory10);;
 
-  create(el, width, height, data) {
-    var svg = d3.select(el)
-        .attr('width', width)
-        .attr('height', height);
+var nodes = [],
+    links = [];
 
-    var simulation = d3.forceSimulation()
+// var force = d3.layout.force()
+//     .nodes(nodes)
+//     .links(links)
+//     .charge(-400)
+//     .linkDistance(120)
+//     .size([width, height])
+//     .on("tick", tick);
+
+var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2))
         .force("y", d3.forceY(0))
         .force("x", d3.forceX(0))
 
-    this.lines = svg.append("g")
-        .attr("class", "links")
 
-    this.nodes = svg.append("g")
-        .attr("class", "nodes")
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
 
-    var ticked = function() {
-        d3.select(el).selectAll('line')
-            .attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
+// var node = svg.selectAll(".node"),
+//     link = svg.selectAll(".link");
 
-        d3.select(el).selectAll('circle')
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
-    }  
+// // 1. Add three nodes and three links.
+setTimeout(function() {
+  var a = {id: "a"}, b = {id: "b"}, c = {id: "c"};
+  nodes.push(a, b, c);
+  links.push({source: a, target: b}, {source: a, target: c}, {source: b, target: c});
+  start();
+}, 0);
 
-    simulation
-        .nodes(data.nodes)
-        .on("tick", ticked);
+// 2. Remove node B and associated links.
+setTimeout(function() {
+  nodes.splice(1, 1); // remove b
+  links.shift(); // remove a-b
+  links.pop(); // remove b-c
+  start();
+}, 2000);
 
-    simulation.force("link")
-        .links(data.links);    
+// Add node B back.
+setTimeout(function() {
+  var a = nodes[0], b = {id: "b"}, c = nodes[1];
+  nodes.push(b);
+  links.push({source: a, target: b}, {source: b, target: c});
+  start();
+}, 4000);
 
-    this.update(el, data);
-  };
+simulation
+  .on("tick", tick);
 
-  update(el, data) {
-    this._drawPoints(el, data);
-  };
+simulation
+  .nodes(nodes)
 
-  destroy(el) {
-  };
+simulation.force("link")
+  .links(links);
+
+function start() {
+  let link = svg.selectAll(".link")
+  .data(links);
+  link.enter().insert("line", ".node").attr("class", "link");
+  link.exit().remove();
+
+  let node = svg.selectAll(".node").data(nodes);
+  node.enter().append("circle").attr("class", function(d) { return "node " + d.id; }).attr("r", 8);
+  node.exit().remove();
+
+  simulation
+    .nodes(nodes)
+
+  simulation.force("link")
+    .links(links);
 }
+
+function tick() {
+  svg.selectAll(".node").attr("cx", function(d) {
+    // console.count(d.x);
+    return d.x;
+  })
+      .attr("cy", function(d) { return d.y; })
+
+  svg.selectAll(".link").attr("x1", function(d) { return d.source.x; })
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });
+}
+
+export default {}

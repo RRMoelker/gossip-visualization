@@ -6,7 +6,7 @@ class ReactGraph extends React.Component {
 
   constructor(props) {
     super(props);
-    this.d3Graph = new D3Graph();
+    // this.d3Graph = new D3Graph();
   }
 
   _getGraphData() {
@@ -20,7 +20,7 @@ class ReactGraph extends React.Component {
 
   componentDidMount() {
     var el = this.refs.svg;
-    this.d3Graph.create(el, 500, 600, this._getGraphData());
+    // this.d3Graph.create(el, 500, 600, this._getGraphData());
   }
 
   componentDidUpdate() {
@@ -30,7 +30,7 @@ class ReactGraph extends React.Component {
 
   componentWillUnmount() {
     var el = this.refs.svg;
-    this.d3Graph.destroy(el);
+    // this.d3Graph.destroy(el);
   }
 
   render() {
