@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "d3": "4.2.6",
+    "d3": "3.5.17",
     "keymirror": "0.1.1",
     "normalize.css": "5.0.0",
     "react": "^15.0.1",

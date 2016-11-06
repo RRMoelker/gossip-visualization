@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import D3Graph from '../d3/D3Graph';
+import {createGraph} from '../d3/D3Graph';
 
 class ReactGraph extends React.Component {
 
@@ -10,8 +10,8 @@ class ReactGraph extends React.Component {
   }
 
   _getGraphData() {
-    var nodes = [{id: 'Alice'}, {id: 'Bob'}, {id: 'Eve'}],
-    links = [{source: 'Alice', target: 'Bob'}, {source: 'Eve', target: 'Bob'}];
+    let nodes = [{id: 'Alice'}, {id: 'Bob'}, {id: 'Eve'}],
+      links = [{source: 'Alice', target: 'Bob'}, {source: 'Eve', target: 'Bob'}];
     return {
       nodes,
       links
@@ -19,17 +19,18 @@ class ReactGraph extends React.Component {
   }
 
   componentDidMount() {
-    var el = this.refs.svg;
+    const el = this.refs.svg;
+    createGraph(el);
     // this.d3Graph.create(el, 500, 600, this._getGraphData());
   }
 
   componentDidUpdate() {
-    var el = this.refs.svg;
+    const el = this.refs.svg;
     // this.d3Graph.update(el, this._getGraphData());
   }
 
   componentWillUnmount() {
-    var el = this.refs.svg;
+    const el = this.refs.svg;
     // this.d3Graph.destroy(el);
   }
 
@@ -40,7 +41,7 @@ class ReactGraph extends React.Component {
       </div>
     );
   }
-};
+}
 
 ReactGraph.propTypes = {
   nodes: React.PropTypes.array,
@@ -53,7 +54,6 @@ const mapStateToProps = state => {
     edges: state.edges
   };
 };
-
 
 export default connect(mapStateToProps)(ReactGraph);
 
