@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 class EdgeList extends React.Component {
   render() {
     return (
-      <div className="graph-explorer__item box">
+      <div className="graph-explorer__item edge-list box">
         <ul>
           {this.props.edges.map(edge =>
             <li key={edge.from + '' + edge.to}>Edge from {edge.from} to {edge.to}</li>
