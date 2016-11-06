@@ -1,3 +1,5 @@
+$darkgray: #2a2f3a;
+
 html, body, .root {
   height: 100%;
 }
@@ -6,8 +8,12 @@ body {
   background-color: lightgrey;
 }
 
+ul {
+  margin: 0;
+}
+
 .box {
-  border: solid darkgrey 2px;
+  border: solid $darkgray 2.5px;
   padding: 1em;
 }
 
@@ -21,59 +27,58 @@ body {
 }
 
 .graph-view {
-  background-color: beige;
+  background-color: white;
   width: 50%;
 }
 .graph-explorer {
-  background-color: lightgreen;
   width: 50%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
 }
 
-
 .graph-explorer__item {
-  flex: 1;
-}
 
-.time-display {
-  flex: initial;
 }
-
+.edge-list {
+  overflow-y: auto;
+  flex-grow: 1;
+  columns: 2;
+}
 .node--failed{
   text-decoration: line-through;
 }
 
 
 /* Graph */
-@keyframes fadein {
-    0% { opacity: 0; }
-    100%   { opacity: 1; }
-}
+svg {
+  @keyframes fadein {
+      0% { opacity: 0; }
+      100%   { opacity: 1; }
+  }
 
-.link {
-  stroke: #000;
-  stroke-width: 1.5px;
-}
+  .link {
+    stroke: #000;
+    stroke-width: 1.5px;
+  }
 
-.node {
-  fill: #000;
-  stroke: #fff;
-  stroke-width: 1.5px;
-  // animation: fadein 1s ease;
-}
-.node.new {
-  fill: green;
-}
-.node.remove {
-  fill: yellow;
-}
-.node.failed {
- fill: red;
-}
+  .node circle {
+    r: 14;
+    fill: $darkgray;
+    animation: fadein 1s ease;
+  }emove circle {
+    fill: yellow;
+  }
+  .node.failed circle {
+   fill: red;
+  }
 
-.node.a { fill: #1f77b4; }
-.node.b { fill: #ff7f0e; }
-.node.c { fill: #2ca02c; }
+  text {
+    fill: white;
+    font: 12px sans-serif;
+    pointer-events: none;
+    text-anchor: middle;
+  }
+
+}
 

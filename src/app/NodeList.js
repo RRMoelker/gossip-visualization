@@ -7,7 +7,7 @@ class NodeList extends React.Component {
       <div className="graph-explorer__item box">
         <ul>
           {this.props.nodes.map(node =>
-            <li key={node.id} className={node.fail?'node node--failed':'node'}>Node {node.id}, members: {node.members.join(',')}
+            <li key={node.id} className={node.fail?'node node--failed':'node'}>Node {node.id}, member list: [{node.members.join(',')}]
             </li>
           )}
         </ul>

@@ -47,11 +47,7 @@ class ReactGraph extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <svg ref="svg"/>
-      </div>
-    );
+    return <svg ref="svg"/>;
   }
 }
 

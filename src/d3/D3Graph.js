@@ -52,14 +52,12 @@ const reconcile = (data, newData) => {
   linksNew.forEach(link => data.links.push(createLinkWithReference(data.nodes, link)));
 };
 
-
 export default class D3Graph {
   create(element, width, height, newData) {
     this.svg = d3.select(element)
       .attr("width", width)
       .attr("height", height);
 
-    // const {nodes, links} = data;
     this.data = {
       nodes: [],
       links: []
@@ -69,9 +67,7 @@ export default class D3Graph {
 
     const that = this;
     function tick() {
-      that.nodeGroup
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
+      that.nodeGroup.attr('transform', d => `translate(${d.x}, ${d.y})`);
 
       that.linkGroup.attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
@@ -83,7 +79,7 @@ export default class D3Graph {
         .nodes(nodes)
         .links(links)
         .charge(-400)
-        .linkDistance(120)
+        .linkDistance(200)
         .size([width, height])
         .on("tick", tick);
 
@@ -109,9 +105,17 @@ export default class D3Graph {
       .attr("class", d => classnames("node", {failed: d.fail}));
 
     // ADD node(s)
-    this.nodeGroup.enter().append("circle")
-      .attr("class", classnames("node", "new"))
-      .attr("r", 8);
+    const g = this.nodeGroup.enter().append('svg:g')
+      .attr("class", classnames("node", "new"));
+
+    g.append("circle");
+
+    // nodes text
+    g.append('svg:text')
+      .attr('x', 0)
+      .attr('y', 4)
+      .attr('class', 'id')
+      .text(d => d.id);
 
     // REMOVE nodes
     this.nodeGroup.exit()
