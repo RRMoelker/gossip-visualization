@@ -1,20 +1,28 @@
 import * as d3 from "d3"; // see https://github.com/d3/d3/blob/master/README.md#installing
+import classnames from "classnames";
+// transitions: https://bl.ocks.org/mbostock/3808234
+
+const t = d3.transition().duration(1500);
 
 const createLinkWithReference = (nodes, link) => {
   // convert reference by value to reference by reference
   const source = nodes.filter(n => n.id === link.source.id)[0];
   const target = nodes.filter(n => n.id === link.target.id)[0];
-  console.log("new link", source, target);
   return {source, target};
 };
 
 const reconcile = (data, newData) => {
+  // remove self links
+  newData.links = newData.links.filter(link => link.source.id !== link.target.id);
+
   // update data object to reflect new data.
   newData.nodes.forEach(newNode => {
     const node = data.nodes.find(node => node.id === newNode.id);
     if (node) {
-      // already exists
+      // already exists, copy properties
+      node.fail = newNode.fail;
     } else {
+      // console.log(newNode);
       data.nodes.push(newNode);
     }
   });
@@ -22,7 +30,6 @@ const reconcile = (data, newData) => {
   const nodes2 = data.nodes.filter(node => {
     return newData.nodes.findIndex(newNode => node.id === newNode.id) !== -1;
   });
-  // console.log(nodes2);
   data.nodes = nodes2;
 
   // remove old links
@@ -32,7 +39,6 @@ const reconcile = (data, newData) => {
       link.target.id === newLink.target.id
       ) !== -1;
   });
-  // console.log(linksRemoved);
   data.links = linksRemoved;
 
   // find new links
@@ -44,8 +50,8 @@ const reconcile = (data, newData) => {
       ) === -1;
   });
   linksNew.forEach(link => data.links.push(createLinkWithReference(data.nodes, link)));
-  console.log(linksNew);
 };
+
 
 export default class D3Graph {
   create(element, width, height, newData) {
@@ -88,14 +94,32 @@ export default class D3Graph {
   }
 
   _update() {
-    // const {nodes, links} = data;
-    this.linkGroup = this.linkGroup.data(this.force.links(), d => d.source.id + "-" + d.target.id);
-    this.linkGroup.enter().insert("line", ".node").attr("class", "link");
-    this.linkGroup.exit().remove();
+    this.linkGroup = this.linkGroup.data(this.force.links(), d => `${d.source.id}-${d.target.id}`);
+    this.linkGroup.enter()
+      .insert("line", ".node")
+      .attr("class", "link");
+    this.linkGroup
+      .exit().remove();
 
+    // nodes
     this.nodeGroup = this.nodeGroup.data(this.force.nodes(), d => d.id);
-    this.nodeGroup.enter().append("circle").attr("class", d => `node ${d.id}`).attr("r", 8);
-    this.nodeGroup.exit().remove();
+
+    // UPDATE existing nodes
+    this.nodeGroup
+      .attr("class", d => classnames("node", {failed: d.fail}));
+
+    // ADD node(s)
+    this.nodeGroup.enter().append("circle")
+      .attr("class", classnames("node", "new"))
+      .attr("r", 8);
+
+    // REMOVE nodes
+    this.nodeGroup.exit()
+        .attr("class", "node", "remove")
+      .transition(t)
+        .attr("y", 60)
+        .style("fill-opacity", 1e-6)
+        .remove();
 
     this.force.start();
   }

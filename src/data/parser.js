@@ -71,5 +71,7 @@ export default function (actions, text) {
   console.log('parsing start');
   text.split("\n").map(line => parseLine(actions, line.trim()));
   console.log('parsing done');
+  // return [actions[0], actions[1]];
+  // return actions.slice(0, 5);
   return actions;
 }
