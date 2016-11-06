@@ -4,17 +4,14 @@ import {connect} from 'react-redux';
 class NodeList extends React.Component {
   render() {
     return (
-      <ul>
-        {this.props.nodes.map(node =>
-          <li key={node.id}>Node {node.id}, members: {node.members.join(',')}
-          {(() => {
-            if (node.fail) {
-              return " failed";
-            }
-          })()}
-          </li>
-        )}
-      </ul>
+      <div className="graph-explorer__item box">
+        <ul>
+          {this.props.nodes.map(node =>
+            <li key={node.id} className={node.fail?'node node--failed':'node'}>Node {node.id}, members: {node.members.join(',')}
+            </li>
+          )}
+        </ul>
+      </div>
     );
   }
 }

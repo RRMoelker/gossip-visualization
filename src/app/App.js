@@ -1,8 +1,8 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 
-import TimeDisplay from './TimeDisplay';
-import NodeList from './NodeList';
+import GraphExplorer from './GraphExplorer';
+import GraphView from './GraphView';
 import TimeMonitor from './TimeMonitor';
 
 class App extends React.Component {
@@ -13,9 +13,9 @@ class App extends React.Component {
     const {store} = this.props;
     return (
       <Provider store={store}>
-        <div>
-          <TimeDisplay/>
-          <NodeList/>
+        <div className="appContainer">
+          <GraphView/>
+          <GraphExplorer/>
           <TimeMonitor/>
         </div>
       </Provider>

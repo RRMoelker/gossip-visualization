@@ -10,7 +10,7 @@ import App from './app/App';
 const logFile = '/log/simple.log';
 const store = storeCreator();
 
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 
 fetch(logFile)
   .then(response => response.text())

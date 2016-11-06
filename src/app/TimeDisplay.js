@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 class TimeDisplay extends React.Component {
   render() {
     return (
-      <span>
+      <div className="graph-explorer__item time-display box">
         Simulation time: {this.props.t}
-      </span>
+      </div>
     );
   }
 }
