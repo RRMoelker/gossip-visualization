@@ -1,8 +1,8 @@
 {
   "dependencies": {
+    "classnames": "2.2.5",
     "d3": "3.5.17",
     "keymirror": "0.1.1",
-    "normalize.css": "5.0.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "4.4.5",
@@ -67,7 +67,7 @@
   },
   "scripts": {
     "start": "npm run serve",
-    "build": "gulp",
+    "build": "gulp build",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
     "test": "gulp test"

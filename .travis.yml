@@ -4,3 +4,8 @@ node_js:
 cache:
   directories:
     - node_modules
+env:
+  global:
+  - ENCRYPTION_LABEL: "ed20e672ae2c"
+  - COMMIT_AUTHOR_EMAIL: "RRMoelker@users.noreply.github.com"
+script: bash ./scripts/deploy.sh
