@@ -6,7 +6,7 @@ class DetailView extends React.Component {
   render() {
     return (
       <div className="graph-view box">
-         <Graph/>
+        <Graph/>
       </div>
     );
   }

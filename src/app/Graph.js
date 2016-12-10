@@ -7,6 +7,7 @@ class ReactGraph extends React.Component {
   constructor(props) {
     super(props);
     this.d3Graph = new D3Graph();
+    this.bootstrapGraph = this.bootstrapGraph.bind(this);
   }
 
   _getGraphData() {
@@ -30,11 +31,6 @@ class ReactGraph extends React.Component {
   }
 
   componentDidMount() {
-    const el = this.refs.svg;
-
-    const data = this._getGraphData();
-
-    this.d3Graph.create(el, 960, 500, data);
   }
 
   componentDidUpdate() {
@@ -46,8 +42,14 @@ class ReactGraph extends React.Component {
     this.d3Graph.destroy();
   }
 
+  bootstrapGraph(svg) {
+    const data = this._getGraphData();
+
+    this.d3Graph.create(svg, 960, 500, data);
+  }
+
   render() {
-    return <svg ref="svg"/>;
+    return <svg ref={this.bootstrapGraph}/>;
   }
 }
 
