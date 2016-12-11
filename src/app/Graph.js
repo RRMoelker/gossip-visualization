@@ -30,9 +30,6 @@ class ReactGraph extends React.Component {
     });
   }
 
-  componentDidMount() {
-  }
-
   componentDidUpdate() {
     const data = this._getGraphData();
     this.d3Graph.update(data);

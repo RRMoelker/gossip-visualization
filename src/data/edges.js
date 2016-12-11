@@ -9,12 +9,11 @@ export const edgeReducer = (state = [], action) => {
         to: action.member
       }];
     case _ACTION_TYPES.NODE_MEMBER_REMOVE: {
-      const index = state.findIndex(
-        edge => {
-          return edge.from === action.id && edge.to === action.member;
-        }
-      );
+      const index = state.findIndex(edge => edge.from === action.id && edge.to === action.member);
       return immutableDelete(state, index);
+    }
+    case _ACTION_TYPES.NODE_FAIL: {
+      return state.filter(edge => edge.from !== action.id);
     }
     default:
       return state;

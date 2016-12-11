@@ -18,7 +18,7 @@ const watch = done => {
 
 gulp.task('build', gulp.series(gulp.parallel('other', 'webpack:dist')));
 gulp.task('watch', watch);
-gulp.task('test:single', gulp.series('eslint')); // TODO: Reactive karma
+gulp.task('test:single', gulp.series('eslint', 'tape')); // TODO: Reactive karma
 gulp.task('test:watch', gulp.series('karma:watch'));
 gulp.task('test', gulp.series('test:single'));
 gulp.task('serve', gulp.series('webpack:watch', 'browsersync'));

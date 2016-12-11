@@ -50,3 +50,18 @@ test('should remove edge', assert => {
   assert.deepEqual(result, expected);
   assert.end();
 });
+
+test('should remove all edges from failed node', assert => {
+  const result = edgeReducer([
+        {from: 1, to: 5},
+        {from: 2, to: 5},
+        {from: 2, to: 3},
+        {from: 2, to: 4}
+  ], actionCreators.nodeFail(t, 2));
+
+  const expected = [
+    {from: 1, to: 5}
+  ];
+  assert.deepEqual(result, expected);
+  assert.end();
+});

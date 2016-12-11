@@ -68,7 +68,8 @@ export const nodeReducer = (state = initialState, action) => {
       return state.map(node => {
         if (node.id === action.id) {
           return Object.assign({}, node, {
-            fail: true
+            fail: true,
+            members: []
           });
         }
         return node;
