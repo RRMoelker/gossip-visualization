@@ -42,11 +42,11 @@ class ReactGraph extends React.Component {
   bootstrapGraph(svg) {
     const data = this._getGraphData();
 
-    this.d3Graph.create(svg, 960, 500, data);
+    this.d3Graph.create(svg, 1000, 1000, data);
   }
 
   render() {
-    return <svg ref={this.bootstrapGraph}/>;
+    return <svg viewBox="250 250 500 500" preserveAspectRatio="xMidYMid meet" ref={this.bootstrapGraph}/>;
   }
 }
 

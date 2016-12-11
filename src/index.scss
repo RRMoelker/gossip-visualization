@@ -44,16 +44,27 @@ $footer-height: 80px;
 
 // graph view
 .graph-view {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
   background-color: white;
-  width: 50%;
-  overflow: hidden;
+
+  svg {
+    max-height: 100%;
+    width: 100%;
+  }
 }
 
 // explorer panel
 .graph-explorer {
-  width: 50%;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
+}
+@media (max-width: 700px) {
+  .graph-explorer {
+    display: none;
+  }
 }
 .graph-explorer__item {
 }

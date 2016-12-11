@@ -7,9 +7,7 @@ const t = d3.transition().duration(1500);
 
 export default class D3Graph {
   create(element, width, height, newData) {
-    this.svg = d3.select(element)
-      .attr("width", width)
-      .attr("height", height);
+    this.svg = d3.select(element);
 
     this.data = {
       nodes: [],

@@ -8,6 +8,8 @@ const createLinkWithReference = (nodes, link) => {
 /**
  * Incorperate changes in newDate in old data objects. References are kept intact.
  * Required for D3 to keep proper references.
+ *
+ * NOTE: This code is messy and unoptimized, TODO
  */
 export const reconcile = (data, newData) => {
   // remove self links
