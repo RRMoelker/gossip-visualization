@@ -59,7 +59,9 @@ export default class D3Graph {
     const g = this.nodeGroup.enter().append('svg:g')
       .attr("class", classnames("node", "new"));
 
-    g.append("circle");
+    g.append("circle")
+      .attr('r', 14);
+    // radius overwritten using css, but for browser that don't support attributes through css (FF) a default is given here.
 
     // nodes text
     g.append('svg:text')
