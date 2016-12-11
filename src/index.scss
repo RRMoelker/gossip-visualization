@@ -2,41 +2,58 @@ $darkgray: #2a2f3a;
 
 @import "d3/graph";
 
+* {
+  box-sizing: border-box;
+}
 html, body, .root {
   height: 100%;
 }
 body {
   background-color: lightgrey;
 }
-
 ul {
   margin: 0;
 }
 
+// Utility
+.row {
+  flex-direction: row;
+  display: flex;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
 .box {
   border: solid $darkgray 2.5px;
   padding: 1em;
 }
 
+// App layout
+$footer-height: 80px;
 .appContainer {
-  height: 85%;
+  height: 100%;
   display: flex;
-
-  & > div {
-    flex: 1;
-  }
+}
+.main-ui {
+  height: calc( 100% - #{$footer-height} );
+}
+.footer {
+  height: $footer-height;
 }
 
+// graph view
 .graph-view {
   background-color: white;
   width: 50%;
   overflow: hidden;
 }
+
+// explorer panel
 .graph-explorer {
   width: 50%;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
 }
 .graph-explorer__item {
 }
@@ -45,7 +62,13 @@ ul {
   flex-grow: 1;
   columns: 2;
 }
-
 .node--failed{
   text-decoration: line-through;
+}
+
+// Time travel panel
+.timeMonitor div a:last-child {
+  // hack to hide "Reset" button, button does not make sense in this context and
+  // layout is done by other module.
+  display: none;
 }

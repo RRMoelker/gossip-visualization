@@ -13,10 +13,14 @@ class App extends React.Component {
     const {store} = this.props;
     return (
       <Provider store={store}>
-        <div className="appContainer">
-          <GraphView/>
-          <GraphExplorer/>
-          <TimeMonitor/>
+        <div className="appContainer column">
+          <div className="main-ui row">
+            <GraphView/>
+            <GraphExplorer/>
+          </div>
+          <div className="footer timeMonitor">
+            <TimeMonitor/>
+          </div>
         </div>
       </Provider>
     );
