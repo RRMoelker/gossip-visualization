@@ -57,21 +57,21 @@ const parseLine = (actions, line) => {
   return actions;
 };
 
+// # Unused log lines
+//
 // ## Detected failure
 // ```
 // 10.0.0.0:0 [113] Node 5.0.0.0:0 failing target
 // ```
-
+//
 // ## Data send over gossip
 // ```
 // 1.0.0.0:0 [5] Node 6.0.0.0:0 gossiping
 // ```
 
 export default function (actions, text) {
-  console.log('parsing start');
+  // console.log('parsing start');
   text.split("\n").map(line => parseLine(actions, line.trim()));
-  console.log('parsing done');
-  // return [actions[0], actions[1]];
-  // return actions.slice(0, 5);
+  // console.log('parsing done');
   return actions;
 }
