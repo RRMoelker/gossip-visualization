@@ -31,16 +31,16 @@ const nodeMemberFail = result => {
 
 const regexFunctions = [
   [
-    /(\d+).0.0.0:0 \[(\d+)\] Node start$/, nodeAdd
+    /(\d+).0.0.0:0 \[(\d+)] Node start$/, nodeAdd
   ],
   [
-    /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
+    /(\d+).0.0.0:0 \[(\d+)] Node (\d+).0.0.0:0 joined at time (\d+)$/, nodeMemberAdd
   ],
   [
-    /(\d+).0.0.0:0 \[(\d+)\] Node (\d+).0.0.0:0 removed at time (\d+)$/, nodeMemberRemove
+    /(\d+).0.0.0:0 \[(\d+)] Node (\d+).0.0.0:0 removed at time (\d+)$/, nodeMemberRemove
   ],
   [
-    /(\d+).0.0.0:0 \[(\d+)\] Node failed at time = \d+$/, nodeMemberFail
+    /(\d+).0.0.0:0 \[(\d+)] Node failed at time = \d+$/, nodeMemberFail
   ]
 ];
 

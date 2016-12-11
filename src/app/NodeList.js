@@ -8,7 +8,7 @@ class NodeList extends React.Component {
         <ul>
           {this.props.nodes.map(node =>
             <li key={node.id} className={node.fail ? 'node node--failed' : 'node'}>
-              Node {node.id}, {node.fail ? "failed" : `member list: [ ${node.members.join(',') }]`}
+              Node {node.id}, {node.fail ? "failed" : `member list: [ ${node.members.join(',')} ]`}
             </li>
           )}
         </ul>
