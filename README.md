@@ -6,7 +6,9 @@ Deployed app: [gossip visualization](https://rrmoelker.github.io/gossip-visualiz
 
 Visualization of a cluster of machines maintaining a network between them. The log of an external program is parsed and the gossip protocol events are shown in the UI.
 
+[
 ![Gossip simulation visualization app screenshot](https://cloud.githubusercontent.com/assets/205326/21080852/f8ebadd4-bfb9-11e6-8c17-c8b8236b0d7c.png)
+](https://rrmoelker.github.io/gossip-visualization/)
 
 Notes:
 
