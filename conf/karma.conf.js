@@ -1,7 +1,7 @@
-var webpackConfig = require('./webpack-test.conf.js');
+const webpackConfig = require('./webpack-test.conf');
 webpackConfig.entry = {};
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     basePath: '../',
     browsers: ['PhantomJS'],
@@ -13,11 +13,11 @@ module.exports = function(config) {
     autoWatchBatchDelay: 300,
 
     files: [
-      {pattern: '**/*.karma.js', watched: false}
+      {pattern: '**/*.karma.js', watched: true}
     ],
 
     preprocessors: {
-      './src/index.js': ['webpack'],      
+      './src/index.js': ['webpack'],
       './**/*.karma.js': ['webpack']
     },
 
@@ -27,4 +27,4 @@ module.exports = function(config) {
     }
 
   });
-}
+};

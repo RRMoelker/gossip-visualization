@@ -9,7 +9,7 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   module: {
-    
+
     loaders: [
       {
         test: /\.(css|scss)$/,

@@ -8,6 +8,10 @@ TARGET_BRANCH="gh-pages"
 
 DIST_FOLDER="dist"
 
+echo "Running tests"
+
+npm test
+
 function doCompile {
   npm run build
 }
