@@ -34,7 +34,16 @@ gulp.task('karma:single', done => {
   new karma.Server({
     configFile: path.join(process.cwd(), 'conf', 'karma.conf.js'),
     singleRun: true
-  }, done).start();
+  }, exitCode => {
+    if (exitCode === 0) {
+      console.log('Karma:single done');
+      done();
+    } else {
+      const msg = `test failed with code: ${exitCode}`;
+      console.error(msg);
+      throw msg;
+    }
+  }).start();
 });
 
 gulp.task('karma:watch', done => {
